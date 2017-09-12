@@ -30,6 +30,30 @@
         <div class="block-volume">
           <div class="volume-wr-circle">
             <div class="volume-in-circle"></div>
+            <div class="volume-in-circle-shadow-1"></div>
+            <div class="volume-in-circle-shadow-2"></div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="302px" height="228px" class="svg_1">
+              <defs>
+                <filter id="Filter_0">
+                  <feOffset in="SourceAlpha" dx="0" dy="0" />
+                  <feGaussianBlur result="blurOut" stdDeviation="2" />
+                  <feFlood flood-color="rgb(0, 0, 0)" result="floodOut" />
+                  <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+                  <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+                  <feComponentTransfer>
+                    <feFuncA type="linear" slope="0.24" />
+                  </feComponentTransfer>
+                  <feBlend mode="multiply" in2="SourceGraphic" />
+                </filter>
+
+              </defs>
+              <g filter="url(#Filter_0)">
+                <path fill-rule="evenodd" fill="rgb(208, 206, 204)" d="M281.654,215.419 L280.866,215.238 C280.517,219.080 277.291,222.090 273.358,222.090 C269.193,222.090 265.816,218.713 265.816,214.548 C265.816,212.683 266.496,210.980 267.616,209.664 C277.064,191.095 281.128,173.253 281.128,150.531 C281.128,78.857 223.025,20.754 151.352,20.754 C79.678,20.754 21.575,78.857 21.575,150.531 C21.575,173.343 24.971,191.094 35.129,209.460 C36.359,210.802 37.115,212.584 37.115,214.548 C37.115,218.713 33.738,222.090 29.572,222.090 C26.656,222.090 24.132,220.432 22.876,218.010 L22.449,218.219 C11.901,198.682 5.808,173.849 5.808,150.531 C5.808,70.149 70.970,4.987 151.352,4.987 C231.733,4.987 296.896,70.149 296.896,150.531 C296.896,173.849 291.403,195.882 281.654,215.419 Z"
+                />
+              </g>
+            </svg>
+
           </div>
         </div>
 
