@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Equalizer</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -26,18 +27,39 @@
     <div class="eq_content">
 
       <div class="eq-volume-section">
-        <div class="block-volume"></div>
-        <div class="block-equlizer"></div>
+        <div class="block-volume">
+          <div class="volume-wr-circle">
+            <div class="volume-in-circle"></div>
+          </div>
+        </div>
+
+        <div class="block-controls">
+          <div class="controller controller-bass">
+            <input type="range" min="-10" max="10" step="3.33" value="0">
+          </div>
+        </div>
       </div>
 
-      <div class="eq-range-section"></div>
+      <div class="eq-range-section">Range Block</div>
 
     </div>
     <!-- End Equalizer Content -->
 
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="copyright-section">
+        <span class="copyright-text">2012 Copyright</span>
+        <span class="copyright-link">
+          <a href="#">dart117.com</a>
+        </span>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
   </div>
   <!-- End Equalizer Wrapper -->
 
+  <script src="js/script.js"></script>
 </body>
 
 </html>
