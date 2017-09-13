@@ -1,21 +1,15 @@
+/**
+ * Volume Controls
+ */
 const wrVolume = document.querySelector('.volume-wr-circle');
 const volume = document.querySelector('.volume-in-circle');
 
 let wrVolRects = wrVolume.getBoundingClientRect();
-let volX = wrVolRects.left + wrVolRects.width / 2;
-let volY = wrVolRects.top + wrVolRects.height / 2;
+let volX = wrVolRects.left + pageXOffset + wrVolRects.width / 2;
+let volY = wrVolRects.top + pageYOffset + wrVolRects.height / 2;
 let mouseDown = false;
 
-wrVolume.addEventListener('mousedown', e => {
-  e.preventDefault();
-  mouseDown = true;
-});
-
-wrVolume.addEventListener('mouseup', () => {
-  mouseDown = false;
-});
-
-document.addEventListener('mousemove', e => {
+wrVolume.addEventListener('mousemove', e => {
   let rad = Math.atan2(e.y - volY, e.x - volX);
   let deg = rad * (180 / Math.PI);
 
@@ -34,43 +28,39 @@ document.addEventListener('mousemove', e => {
   }
 });
 
-/*2*/
-// volume.style.transform = `rotate(90deg)`;
-// let mouseDown = false;
-// let offset = wrVolume.getBoundingClientRect();
+wrVolume.addEventListener('mousedown', e => {
+  e.preventDefault();
+  mouseDown = true;
+});
 
-// wrVolume.addEventListener('mousemove', e => {
-//   let centerX = offset.left + offset.width / 2;
-//   let centerY = offset.top + offset.height / 2;
-//   let mouseX = e.offsetX;
-//   let mouseY = e.offsetY;
+document.addEventListener('mouseup', () => {
+  mouseDown = false;
+});
 
-//   if (mouseDown) {
-//     let radians = Math.atan2(mouseX - centerX, mouseY - centerY);
-//     let degree = radians * (180 / Math.PI) * -1 + 90;
-//     volume.style.transform = `rotate(${degree}deg)`;
-//     console.log(degree);
-//   }
-// });
+/**
+ * Ranges Controls
+ */
+const range = document.querySelector('.range');
+const rangeThumb = document.querySelector('.range-thumb');
+const rangeCenter = rangeThumb.getBoundingClientRect().height / 2;
+let rangeMouseDown = false;
+let rangeY;
 
-/*1*/
-// let a = 0;
-// let x = 0;
-// let y = 0;
-// wrVolume.addEventListener('mousemove', e => {
-//   x = e.offsetX;
-//   y = e.offsetY;
-//   let newRad = x;
-//   newRad += x - a;
-//   if (clicking) {
-//     if (e.offsetX) {
-//       a += x / 20;
-//       volume.style.transform = `rotate(${a}deg)`;
-//       // console.log('a1: ' + a);
-//     } else if (e.offsetY) {
-//       a -= y / 20;
-//       // console.log('a2: ' + a);
-//       volume.style.transform = `rotate(${a}deg)`;
-//     }
-//   }
-// });
+range.addEventListener('mousedown', e => {
+  e.preventDefault();
+  rangeMouseDown = true;
+  rangeThumb.style.top = rangeY - rangeCenter + 'px';
+
+  document.onmousemove = e => {
+    let rangeHeight = range.getBoundingClientRect().height;
+    rangeY = e.offsetY;
+
+    if (rangeMouseDown && rangeHeight >= rangeY) {
+      rangeThumb.style.top = rangeY - rangeCenter + 'px';
+    }
+  };
+});
+
+document.addEventListener('mouseup', () => {
+  rangeMouseDown = false;
+});
