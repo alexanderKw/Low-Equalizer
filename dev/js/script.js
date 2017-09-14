@@ -7,17 +7,16 @@ const volume = document.querySelector('.volume-in-circle');
 let wrVolRects = wrVolume.getBoundingClientRect();
 let volX = wrVolRects.left + pageXOffset + wrVolRects.width / 2;
 let volY = wrVolRects.top + pageYOffset + wrVolRects.height / 2;
-let mouseDown = false;
 
-wrVolume.addEventListener('mousemove', e => {
-  let rad = Math.atan2(e.y - volY, e.x - volX);
-  let deg = rad * (180 / Math.PI);
+wrVolume.addEventListener('mousedown', e => {
+  document.onmousemove = e => {
+    let rad = Math.atan2(e.y - volY, e.x - volX);
+    let deg = rad * (180 / Math.PI);
 
-  if (deg > 77 || deg < -170) {
-    return;
-  }
+    if (deg > 77 || deg < -170) {
+      return;
+    }
 
-  if (mouseDown) {
     volume.style.transform = `rotate(${Math.atan2(e.y - volY, e.x - volX)}rad)`;
 
     window.getComputedStyle(volume, '::before').getPropertyValue('conetnt');
@@ -25,42 +24,71 @@ wrVolume.addEventListener('mousemove', e => {
       '.volume-in-circle::before',
       'transform: rotate(' + -Math.atan2(e.y - volY, e.x - volX) + 'rad)'
     );
-  }
+  };
+
+  document.onmouseup = () => {
+    document.onmousemove = document.onmousedown = null;
+  };
+
+  return false;
 });
 
-wrVolume.addEventListener('mousedown', e => {
-  e.preventDefault();
-  mouseDown = true;
-});
-
-document.addEventListener('mouseup', () => {
-  mouseDown = false;
-});
+wrVolume.ondragstart = () => {
+  return false;
+};
 
 /**
  * Ranges Controls
  */
-const range = document.querySelector('.range');
-const rangeThumb = document.querySelector('.range-thumb');
-const rangeCenter = rangeThumb.getBoundingClientRect().height / 2;
-let rangeMouseDown = false;
-let rangeY;
+const ranges = document.querySelectorAll('.range');
+const rangeThumbs = document.querySelectorAll('.range-thumb');
+const rangesBgActive = document.querySelectorAll('.range-bg-active');
 
-range.addEventListener('mousedown', e => {
-  e.preventDefault();
-  rangeMouseDown = true;
-  rangeThumb.style.top = rangeY - rangeCenter + 'px';
+ranges.forEach(range => {
+  rangeThumbs.forEach(rangeThumb => {
+    rangeThumb.addEventListener('mousedown', e => {
+      let thumbCoords = getCoords(rangeThumb);
+      let shiftY = e.pageY - thumbCoords.top;
+      let rangeCoords = getCoords(range);
 
-  document.onmousemove = e => {
-    let rangeHeight = range.getBoundingClientRect().height;
-    rangeY = e.offsetY;
+      document.onmousemove = e => {
+        e.preventDefault();
+        let newTop = e.pageY - shiftY - rangeCoords.top;
 
-    if (rangeMouseDown && rangeHeight >= rangeY) {
-      rangeThumb.style.top = rangeY - rangeCenter + 'px';
-    }
+        if (newTop < 0) newTop = 0;
+
+        let topEdge = range.offsetHeight - rangeThumb.offsetHeight;
+        if (newTop > topEdge) newTop = topEdge;
+
+        // Set thumb value
+        rangeThumb.style.top = `${newTop}px`;
+
+        // Set range active background value
+        let rangeActiveBg = e.target.parentNode.querySelector(
+          '.range-bg-active'
+        );
+        rangeActiveBg.style.top = `${newTop}px`;
+        // console.log(a);
+      };
+
+      document.onmouseup = () => {
+        document.onmousemove = document.onmousedown = null;
+      };
+
+      return false;
+    });
+
+    rangeThumb.ondragstart = () => {
+      return false;
+    };
+  });
+});
+
+function getCoords(elem) {
+  let box = elem.getBoundingClientRect();
+
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
   };
-});
-
-document.addEventListener('mouseup', () => {
-  rangeMouseDown = false;
-});
+}

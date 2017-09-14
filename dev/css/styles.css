@@ -90,11 +90,22 @@
 .volume-in-circle-shadow-2 {
   position: absolute;
   z-index: 1;
+  top: 80px;
+  left: 71px;
+  width: 217px;
+  height: 200px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  transform: rotate(-36deg);
+  background: -moz-linear-gradient(top, rgba(134,131,128,1) 0%, rgba(134,131,128,0) 100%);
+  background: -webkit-linear-gradient(top, rgba(134,131,128,1) 0%,rgba(134,131,128,0) 100%);
+  background: linear-gradient(to bottom, rgba(134,131,128,1) 0%,rgba(134,131,128,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#868380', endColorstr='#00868380',GradientType=0 );
+  /*
   top: -27px;
   left: 8px;
   width: 217px;
   height: 217px;
-  -webkit-transform: rotate(45deg);
   transform: rotate(57deg);
   box-shadow: 60px 0 14px -6px rgba(0,0,0,.025), 
   97px 0 14px -6px rgba(0,0,0,.03), 
@@ -102,24 +113,33 @@
   125px 0 14px -11px rgba(0,0,0,.04), 
   150px 0 14px -17px rgba(0,0,0,.045), 
   186px 0 25px -22px rgba(0,0,0,.03);
+  */
 }
 
 /* Volume SVG */
-.svg_1 {
+.svg_1,
+.svg_2 {
   position: absolute;
   top: 25px;
   left: 25px;
 }
 
+.svg_1 {
+  z-index: 1;
+}
+
 /* Range Line Controls */
+.block-controls {
+  display: flex;
+}
+
 .range {
   width: 24px;
   height: 356px;
   border: 1px solid #7b7870;
   border-radius: 10px;
   border-color: rgb(123, 120, 112);
-  background-color: rgba(198, 194, 189, 0);
-  opacity: 0.46;
+  background-color: rgba(141, 134, 126, .2);
   box-shadow: 0.52px 1.94px 0px 0px rgba(255, 255, 255, 0.53),
   inset 0.52px 1.94px 5px 0px rgba(0, 0, 0, 0.37);
   display: flex;
@@ -130,13 +150,33 @@
   width: 9px;
   height: 336px;
   display: block;
-  border-radius: 10px;
+  border-radius: 15px;
   margin: auto;
+  position: relative;
   background: #999690;
   background: repeating-linear-gradient(45deg, #999690, #999690 7px, #7b7870 9px);
   box-shadow: inset 1px 0 3px 1px #6c6965, 
   0.63px 1.9px 0px 0px rgba(255, 255, 255, 0.65),
   inset 0.55px 1.93px 2px 0px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.range-bg-active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #1e5799;
+  background: -moz-linear-gradient(top, #1e5799 0px, #539105 0px, #539105 83px, #7eb23c 139px, #30bde5 272px, #207cca 336px, #73d9f6 336px);
+  background: -webkit-linear-gradient(top, #1e5799 0px,#539105 0px,#539105 83px,#7eb23c 139px,#30bde5 272px,#207cca 336px,#73d9f6 336px);
+  background: linear-gradient(to top, #73d9f6 0px,#207cca 0px,#30bde5 83px,#7eb23c 139px,#539105 272px,#539105 336px,#1e5799 336px);
+  /*
+  background: -moz-linear-gradient(top, #1e5799 0%, #539105 0%, #539105 21%, #7eb23c 55%, #30bde5 86%, #207cca 100%, #73d9f6 100%);
+  background: -webkit-linear-gradient(top, #1e5799 0%,#539105 0%,#539105 21%,#7eb23c 55%,#30bde5 86%,#207cca 100%,#73d9f6 100%);
+  background: linear-gradient(to bottom, #1e5799 0%,#539105 0%,#539105 21%,#7eb23c 55%,#30bde5 86%,#207cca 100%,#73d9f6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#73d9f6',GradientType=0 );
+  */
 }
 
 .range-thumb {
@@ -159,7 +199,6 @@
   top: 0;
   left: 50%;
   margin-left: -35px;
-  transition: all .2s linear;
 
   &::before {
     content: "";
