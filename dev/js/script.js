@@ -8,6 +8,16 @@ let wrVolRects = wrVolume.getBoundingClientRect();
 let volX = wrVolRects.left + pageXOffset + wrVolRects.width / 2;
 let volY = wrVolRects.top + pageYOffset + wrVolRects.height / 2;
 
+/* Volome progress */
+/*
+const volumeCircle = document.querySelector('#volume-circle');
+const volumeRadius = volumeCircle.getAttribute('r');
+const volumeValue = document.querySelector('#volume-value');
+const volumeCirclelength = volumeCircle.getTotalLength();
+const length = 2 * Math.PI * volumeRadius;
+*/
+/* */
+
 wrVolume.addEventListener('mousedown', e => {
   document.onmousemove = e => {
     e.preventDefault();
@@ -18,6 +28,36 @@ wrVolume.addEventListener('mousedown', e => {
     if (deg > 77 || deg < -170) {
       return;
     }
+
+    /**/
+    /*
+    var progressValue = document.querySelector('#volume-value');
+
+    var RADIUS = 138;
+    var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+    function progress(value) {
+      var progress = value / 100;
+      var dashoffset = CIRCUMFERENCE * (1 - progress);
+
+      console.log('progress:', value + '%', '|', 'offset:', dashoffset);
+
+      if (dashoffset >= volumeCirclelength) {
+        progressValue.style.strokeDashoffset = volumeCirclelength;
+      } else {
+        progressValue.style.strokeDashoffset = dashoffset;
+      }
+    }
+
+    control.addEventListener('input', function(event) {
+        progress(event.target.valueAsNumber);
+    });
+
+    progressValue.style.strokeDasharray = CIRCUMFERENCE;
+    let v = e.offsetX / 10 + e.offsetY / 10;
+    progress(v);
+*/
+    /**/
 
     volume.style.transform = `rotate(${Math.atan2(e.y - volY, e.x - volX)}rad)`;
 
