@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Equalizer</title>
+  <title>Light Ui elements</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -13,14 +13,16 @@
 
   <!-- Equalizer Wrapper -->
   <div class="eq_wrapper">
+
+    <!-- Equalizer Inner -->
     <div class="eq_inner">
 
       <!-- Header -->
       <header class="eq_header">
         <div class="title-section">
           <h2 class="title">Light Ui elements</h2>
-          <span class="tagline">by Dart 117 studio</span>
         </div>
+        <span class="tagline">by Dart 117 studio</span>
       </header>
       <!-- End Header -->
 
@@ -33,6 +35,7 @@
               <div class="volume-in-circle"></div>
               <div class="volume-in-circle-shadow-1"></div>
               <div class="volume-in-circle-shadow-2"></div>
+              <div class="pseudo"></div>
 
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="302px" height="228px" class="svg_1">
                 <defs>
@@ -40,9 +43,6 @@
                     <stop offset="0%" stop-color="#539105" />
                     <stop offset="100%" stop-color="#60ccef" />
                   </linearGradient>
-                  <filter id="s">
-                    <feDropShadow dx="" dy="" stdDeviation="1" />
-                  </filter>
                 </defs>
                 <g stroke-width="14" fill="transparent" transform="rotate(153 151 151)">
                   <circle id="volume-value" cx="151" cy="151" r="138" stroke="url(#volume-gradient)" style="stroke-linecap: round; stroke-dasharray:403, 463; stroke-dashoffset:0"
@@ -53,13 +53,18 @@
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="302px" height="228px" class="svg_2">
                 <defs>
                   <filter id="volume-stroke">
-                    <feDropShadow dx="" dy="" stdDeviation="1" />
+                    <feDropShadow dx="0" dy="0" stdDeviation="1" />
                   </filter>
                 </defs>
                 <g stroke-width="14" filter="url(#volume-stroke)" fill="transparent" transform="rotate(153 151 151)">
                   <circle id="volume-circle" cx="151" cy="151" r="138" stroke="rgb(208, 206, 204)" style="stroke-linecap: round; stroke-dasharray:563, 303; stroke-dashoffset:0"
                   />
                 </g>
+              </svg>
+
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="302px" height="258px" class="svg_3">
+                <text x="20" y="248">MIN</text>
+                <text x="250" y="248">MAX</text>
               </svg>
 
             </div>
@@ -73,6 +78,7 @@
                 </span>
                 <span class="range-thumb"></span>
               </div>
+              <div class="range-marking"></div>
               <input class="range-inp" type="range" min="-10" max="10" step="3.33" value="0">
             </div>
 
@@ -109,19 +115,23 @@
 
       </div>
       <!-- End Equalizer Content -->
+    </div>
+    <!-- Equalizer Inner -->
 
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="copyright-section">
-          <span class="copyright-text">2012 Copyright</span>
-          <span class="copyright-link">
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="copyright-section">
+        <p class="copyright-text">2012 Copyright</p>
+        <strong class="footer-logo">
+          <a href="#">Dart117</a>
+        </strong>
+        <span class="copyright-link">
           <a href="#">dart117.com</a>
         </span>
-        </div>
-      </footer>
-      <!-- End Footer -->
+      </div>
+    </footer>
+    <!-- End Footer -->
 
-    </div>
   </div>
   <!-- End Equalizer Wrapper -->
 
