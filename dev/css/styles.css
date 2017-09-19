@@ -1,4 +1,84 @@
-* {
+/* Fonts */
+@font-face {
+  font-family: "open_sansregular";
+  src: url("../fonts/opensans-regular-webfont.woff2") format("woff2"),
+        url("../fonts/opensans-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "open_sanssemibold";
+  src: url("../fonts/opensans-semibold-webfont.woff2") format("woff2"),
+        url("../fonts/opensans-semibold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* General Styles */
+:root {
+  --range-height: 356px;
+
+  --fz-range: 16px;
+
+  --range-fonts {
+    font-size: var(--fz-range);
+    font-family: "open_sanssemibold";
+    color: #6e6b65;
+    text-shadow: 1px 1px 0 #fff;
+  }
+
+  --range-marking-level {
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: #423f3b;
+      box-shadow:  1px 1px 0 #fff, 6px 0 0 #423f3b, 7px 1px 0 #fff,
+      11px 0 0 #423f3b, 12px 1px 0 #fff, 16px 0 0 #423f3b, 17px 1px 0 #fff,
+      21px 0 0 #423f3b, 22px 1px 0 #fff, 26px 0 0 #423f3b, 27px 1px 0 #fff,
+      31px 0 0 #423f3b, 32px 1px 0 #fff, 36px 0 0 #423f3b, 37px 1px 0 #fff,
+      41px 0 0 #423f3b, 42px 1px 0 #fff, 46px 0 0 #423f3b, 47px 1px 0 #fff,
+      -82px 0 0 #423f3b, -81px 1px 0 #fff, -87px 0 0 #423f3b, -86px 1px 0 #fff,
+      -92px 0 0 #423f3b, -91px 1px 0 #fff, -97px 0 0 #423f3b, -96px 1px 0 #fff,
+      -102px 0 0 #423f3b, -101px 1px 0 #fff, -107px 0 0 #423f3b, -106px 1px 0 #fff,
+      -112px 0 0 #423f3b, -111px 1px 0 #fff, -118px 0 0 #423f3b, -117px 1px 0 #fff;
+  }
+
+  --range-marking-level-checkpoits {
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background-color: #8b8986;
+      box-shadow:  1px 1px 0 #fff, 6px 0 0 #8b8986, 7px 1px 0 #fff,
+      11px 0 0 #8b8986, 12px 1px 0 #fff, -82px 0 0 #8b8986, -81px 1px 0 #fff, 
+      -87px 0 0 #8b8986, -86px 1px 0 #fff, -92px 0 0 #8b8986, -91px 1px 0 #fff;
+  }
+
+  --range-marking-level-last-child {
+      background-color: transparent;
+      box-shadow:  1px 1px 0 transparent, 6px 0 0 transparent, 7px 1px 0 transparent,
+      11px 0 0 transparent, 12px 1px 0 transparent, 16px 0 0 transparent, 17px 1px 0 transparent,
+      21px 0 0 transparent, 22px 1px 0 transparent, 26px 0 0 transparent, 27px 1px 0 transparent,
+      31px 0 0 transparent, 32px 1px 0 transparent, 36px 0 0 transparent, 37px 1px 0 transparent,
+      41px 0 0 transparent, 42px 1px 0 transparent, 46px 0 0 transparent, 47px 1px 0 transparent,
+      -82px 0 0 #423f3b, -81px 1px 0 #fff, -87px 0 0 #423f3b, -86px 1px 0 #fff,
+      -92px 0 0 #423f3b, -91px 1px 0 #fff, -97px 0 0 #423f3b, -96px 1px 0 #fff,
+      -102px 0 0 #423f3b, -101px 1px 0 #fff, -107px 0 0 #423f3b, -106px 1px 0 #fff,
+      -112px 0 0 #423f3b, -111px 1px 0 #fff, -118px 0 0 #423f3b, -117px 1px 0 #fff;
+  }
+
+  --range-marking-level-checkpoits-last-child {
+      background-color: transparent;
+      box-shadow:  1px 1px 0 transparent, 6px 0 0 transparent, 7px 1px 0 transparent,
+      11px 0 0 transparent, 12px 1px 0 transparent, -82px 0 0 #8b8986, -81px 1px 0 #fff, 
+      -87px 0 0 #8b8986, -86px 1px 0 #fff, -92px 0 0 #8b8986, -91px 1px 0 #fff;
+  }
+}
+
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -15,7 +95,7 @@ a {
 body {
   margin: 0;
   padding: 0;
-  font: 16px/1.2 Arial, Helvetica, sans-serif;
+  font: 16px/1.2 "open_sansregular", Arial, Helvetica, sans-serif;
 }
 
 .eq_wrapper {
@@ -61,7 +141,7 @@ body {
     height: 73px;
     position: absolute;
     bottom: -23px;
-    right: -101px;
+    right: -100px;
   }
 }
 
@@ -75,6 +155,7 @@ body {
 
 .eq-volume-section {
   display: flex;
+  margin-bottom: 93px;
 }
 
 .block-volume,
@@ -85,7 +166,11 @@ body {
 }
 
 .block-controls {
+  display: flex;
   justify-content: flex-end;
+  padding-right: 27px;
+  margin-bottom: 35px;
+  position: relative;
 }
 
 /* Volume */
@@ -215,7 +300,7 @@ body {
 }
 
 .svg_3 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'open_sanssemibold', Arial, Helvetica, sans-serif;
   font-size: 14px;
   fill: #898987;
   text-shadow: 1px 1px 1px #fff;
@@ -229,34 +314,112 @@ body {
 .block-controls {
   /*
   display: flex;
-  */
   padding-right: 27px;
+  padding-bottom: 35px;
+  position: relative;
+  */
 }
 
 .controller {
-  /*
   justify-content: flex-end;
-  */
+  flex-basis: 50%;
+  /*
   float: right;
   width: 50%;
+  */
+  position: relative;
 }
 
-.range-marking {
-  margin: 11px 26px 0;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background-color: #423f3b;
-  box-shadow: 1px 1px 0 #fff, 5px 0 0 #423f3b, 6px 1px 0 #fff,
-  10px 0 0 #423f3b, 11px 1px 0 #fff, 15px 0 0 #423f3b, 16px 1px 0 #fff,
-  20px 0 0 #423f3b, 21px 1px 0 #fff, 25px 0 0 #423f3b, 26px 1px 0 #fff,
-  30px 0 0 #423f3b, 31px 1px 0 #fff, 35px 0 0 #423f3b, 36px 1px 0 #fff,
-  40px 0 0 #423f3b, 41px 1px 0 #fff, 45px 0 0 #423f3b, 46px 1px 0 #fff,
-  50px 0 0 #423f3b, 51px 1px 0 #fff, 55px 0 0 #423f3b, 56px 1px 0 #fff,
-  60px 0 0 #423f3b, 61px 1px 0 #fff, 65px 0 0 #423f3b, 66px 1px 0 #fff,
-  70px 0 0 #423f3b, 71px 1px 0 #fff, 75px 0 0 #423f3b, 76px 1px 0 #fff,
-  80px 0 0 #423f3b, 81px 1px 0 #fff, 85px 0 0 #423f3b, 86px 1px 0 #fff,
-  90px 0 0 #423f3b, 91px 1px 0 #fff, 95px 0 0 #423f3b, 96px 1px 0 #fff;
+.range-marking-level-top,
+.range-marking-level-middle,
+.range-marking-level-bottom {
+  right: -30px;
+
+  @apply --range-marking-level;
+}
+
+.range-marking-level-top::before,
+.range-marking-level-middle::before,
+.range-marking-level-middle::after,
+.range-marking-level-bottom::before {
+  content: "";
+  display: block;
+  @apply --range-marking-level-checkpoits;
+}
+
+.range-marking-level-top {
+  top: 11px;
+
+  &::before {
+    margin-top: calc(var(--range-height) / 6);
+  }
+}
+
+.range-marking-level-middle {
+  top: 50%;
+
+  &::before {
+    margin-top: calc(-var(--range-height) / 6);
+  }
+  
+  &::after {
+    margin-top: calc(var(--range-height) / 6 + var(--range-height) / 6);
+  }
+}
+
+.range-marking-level-bottom {
+  bottom: 11px;
+
+  &::before {
+    margin-top: calc(-var(--range-height) / 6);
+  }
+}
+
+.controller:last-child .range-marking-level-top,
+.controller:last-child .range-marking-level-middle,
+.controller:last-child .range-marking-level-bottom {
+  @apply --range-marking-level-last-child;
+}
+
+.controller:last-child .range-marking-level-top::before,
+.controller:last-child .range-marking-level-middle::before,
+.controller:last-child .range-marking-level-middle::after,
+.controller:last-child .range-marking-level-bottom::before {
+  @apply --range-marking-level-checkpoits-last-child;
+}
+
+.range-digits-high,
+.range-digits-middle,
+.range-digits-low {
+  @apply --range-fonts;
+}
+
+.range-digits-high {
+  position: absolute;
+  top: 2px;
+  left: 10%;
+}
+
+.range-digits-middle {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  margin-top: calc(-var(--fz-range) / 2);
+}
+
+.range-digits-low {
+  position: absolute;
+  bottom: 2px;
+  left: 10%;
+}
+
+.range-name {
+  position: absolute;
+  bottom: -35px;
+  right: -6px;
+  text-transform: uppercase;
+
+  @apply --range-fonts;
 }
 
 input[type="range"] {
@@ -265,7 +428,7 @@ input[type="range"] {
 
 .range {
   width: 24px;
-  height: 356px;
+  height: var(--range-height);
   border: 1px solid #7b7870;
   border-radius: 60px;
   border-color: rgb(123, 120, 112);
@@ -378,7 +541,7 @@ input[type="range"] {
 .progress-bg {
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(45deg, #98958f, #98958f 7px, #7a766e 9px);
+  background: repeating-linear-gradient(45deg, #98958f, #98958f 5px, #7a766e 7px);
   box-shadow: 0.618px 1.902px 0px 0px rgba(255, 255, 255, 0.39),inset 0.551px 1.923px 2px 0px rgba(0, 0, 0, 0.6);
   border-radius: 60px;
   position: relative;
@@ -418,6 +581,63 @@ input[type="range"] {
   border-radius: 60px;
 }
 
+.progress-tooltip {
+  width: 69px;
+  height: 47px;
+  background-color: #f7f6f4;
+  border-radius: 5px;
+  position: absolute;
+  top: -74px;
+  left: 50%;
+  margin-left: -34px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s;
+
+    &::before {
+    content: "";
+    display: block;
+    width: 19px;
+    height: 19px;
+    background-color: #fff;
+    transform: rotate(30deg) skewY(31deg);
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    margin-left: -10px;
+    box-shadow: 1px 0 2px .5px #908a83;
+  }
+
+  &::after {
+    content: "";
+    border-top: 19px solid #f7f6f4;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -17px;
+    left: 50%;
+    margin-left: -11px;
+  }
+}
+
+.tooltip-body {
+  font-size: 22px;
+  font-family: "open_sanssemibold", Arial, Helvetica, sans-serif;
+  color: #5e8918;
+  text-align: center;
+  line-height: 45px;
+  background-color: #f7f6f4;
+  box-shadow: 1px 1px 2px 0 #908a83;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+  position: absolute;
+  overflow: hidden;
+}
+
 .progress-thumb {
   background: #f9f8f7;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjhmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjM2MxYzEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -439,6 +659,11 @@ input[type="range"] {
   margin-top: -24px;
   width: 48px;
   height: 48px;
+
+  &:hover .progress-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .thumb-line {

@@ -6,6 +6,7 @@ const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const bs = require('browser-sync').create();
+const imagemin = require('gulp-imagemin');
 
 gulp.task('serv', () => {
   bs.init({
@@ -71,10 +72,18 @@ gulp.task('js', () => {
     .pipe(bs.stream());
 });
 
+gulp.task('imagemin', () => {
+  return gulp
+    .src('./dev/img/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./App/img'));
+});
+
 gulp.task('watch', () => {
   gulp.watch('./dev/*.html', ['html']);
   gulp.watch('./dev/css/**/*.css', ['css']);
   gulp.watch('./dev/js/**/*.js', ['js']);
+  gulp.watch('./App/img/*', ['imagemin']);
 });
 
-gulp.task('default', ['serv', 'html', 'css', 'js', 'watch']);
+gulp.task('default', ['serv', 'html', 'css', 'js', 'imagemin', 'watch']);

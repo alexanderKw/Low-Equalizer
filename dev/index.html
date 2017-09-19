@@ -20,7 +20,7 @@
       <!-- Header -->
       <header class="eq_header">
         <div class="title-section">
-          <h2 class="title">Light Ui elements</h2>
+          <h2 class="title">Light UI elements</h2>
         </div>
         <span class="tagline">by Dart 117 studio</span>
       </header>
@@ -71,6 +71,9 @@
           </div>
 
           <div class="block-controls">
+            <div class="range-digits-high">10</div>
+            <div class="range-digits-middle">0</div>
+            <div class="range-digits-low">-10</div>
             <div class="controller">
               <div class="range range-bass">
                 <span class="range-bg">
@@ -78,19 +81,27 @@
                 </span>
                 <span class="range-thumb"></span>
               </div>
-              <div class="range-marking"></div>
-              <input class="range-inp" type="range" min="-10" max="10" step="3.33" value="0">
+              <div class="range-marking-level-top"></div>
+              <div class="range-marking-level-middle"></div>
+              <div class="range-marking-level-bottom"></div>
+              <span class="range-name">bass</span>
+              <input class="range-inp-b" type="range" min="-10" max="10" step="3.33" value="0" hidden>
             </div>
 
             <div class="controller">
               <div class="range range-high">
                 <span class="range-bg">
-                <span class="range-value range-high-value"></span>
+                  <span class="range-value range-high-value"></span>
                 </span>
                 <span class="range-thumb"></span>
               </div>
-              <input class="range-inp" type="range" min="-10" max="10" step="3.33" value="0">
+              <div class="range-marking-level-top"></div>
+              <div class="range-marking-level-middle"></div>
+              <div class="range-marking-level-bottom"></div>
+              <span class="range-name">high</span>
+              <input class="range-inp" type="range" min="-10" max="10" step="3.33" value="0" hidden>
             </div>
+
           </div>
         </div>
 
@@ -104,9 +115,12 @@
               <div class="progress-value"></div>
             </div>
             <div class="progress-thumb">
-              <div class="thumb-line"></div>
-              <div class="thumb-line"></div>
-              <div class="thumb-line"></div>
+              <span class="thumb-line"></span>
+              <span class="thumb-line"></span>
+              <span class="thumb-line"></span>
+              <div class="progress-tooltip">
+                <div class="tooltip-body">0</div>
+              </div>
             </div>
 
           </div>
