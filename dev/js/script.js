@@ -4,28 +4,17 @@
 const wrVolume = document.querySelector('.volume-wr-circle');
 const volume = document.querySelector('.volume-in-circle');
 
-let wrVolRects = wrVolume.getBoundingClientRect();
-let volX = wrVolRects.left + pageXOffset + wrVolRects.width / 2;
-let volY = wrVolRects.top + pageYOffset + wrVolRects.height / 2;
-
-/* Volome progress */
-/*
-const volumeCircle = document.querySelector('#volume-circle');
-const volumeRadius = volumeCircle.getAttribute('r');
-const volumeValue = document.querySelector('#volume-value');
-const volumeCirclelength = volumeCircle.getTotalLength();
-const length = 2 * Math.PI * volumeRadius;
-*/
-/* */
+const wrVolRects = wrVolume.getBoundingClientRect();
+const volX = wrVolRects.left + pageXOffset + wrVolRects.width / 2;
+const volY = wrVolRects.top + pageYOffset + wrVolRects.height / 2;
 
 wrVolume.addEventListener('mousedown', e => {
+  e.preventDefault();
   document.onmousemove = e => {
-    e.preventDefault();
-
     let rad = Math.atan2(e.y - volY, e.x - volX);
     let deg = rad * (180 / Math.PI);
 
-    if (deg > 77 || deg < -170) {
+    if (deg < -177 || deg > 77) {
       return;
     }
 
@@ -61,11 +50,42 @@ wrVolume.addEventListener('mousedown', e => {
 
     volume.style.transform = `rotate(${Math.atan2(e.y - volY, e.x - volX)}rad)`;
 
-    window.getComputedStyle(volume, '::before').getPropertyValue('conetnt');
-    document.styleSheets[0].addRule(
-      '.volume-in-circle::before',
-      'transform: rotate(' + -Math.atan2(e.y - volY, e.x - volX) + 'rad)'
+    // window.getComputedStyle(volume, '::before').getPropertyValue('conetnt');
+    document.querySelector(
+      '.volume-point'
+    ).style.transform = `rotate(${-Math.atan2(e.y - volY, e.x - volX)}rad)`;
+
+    // document.styleSheets[0].addRule(
+    //   '.volume-in-circle::before',
+    //   'transform: rotate(' + -Math.atan2(e.y - volY, e.x - volX) + 'rad)'
+    // );
+
+    /**/
+    const volumeValue = document.querySelector('#volume-value');
+    const volumeValueRadius = volumeValue.getAttribute('r');
+    const volumeValueLength = 2 * Math.PI * volumeValueRadius;
+    const strokeDashArr_1 = (volumeValueLength + deg * 5) / 2.2;
+    const strokeDashArr_2 =
+      volumeValueLength - (volumeValueLength + deg * 5) / 2.2;
+
+    if (
+      strokeDashArr_1 > volumeValueLength ||
+      strokeDashArr_2 > volumeValueLength
+    ) {
+      return;
+    }
+    // v.setAttribute(
+    //   'stroke-dasharray',
+    //   (vL + deg * 5) / 2.2 + ',' + (vL - (vL + deg * 5) / 2.2)
+    // );
+    volumeValue.setAttribute(
+      'stroke-dasharray',
+      strokeDashArr_1 + ',' + strokeDashArr_2
     );
+    // console.log(v.getTotalLength());
+    // console.log(v.getAttribute('stroke-dasharray'));
+    // (-progress / 100f * 360f) - 90f
+    /**/
   };
 
   document.onmouseup = () => {
@@ -153,23 +173,6 @@ rangeHighThumb.addEventListener('mousedown', e => {
 rangeBassThumb.ondragstart = function() {
   return false;
 };
-
-/**/
-// var vol_svg = 'http://www.w3.org/2000/svg';
-
-// function createCircle() {
-//   var vol = document.createElementNS(vol_svg, 'circle'); //to create a circle, for rectangle use rectangle
-//   vol.setAttributeNS(null, 'id', 'vol_svg');
-//   vol.setAttributeNS(null, 'cx', 100);
-//   vol.setAttributeNS(null, 'cy', 100);
-//   vol.setAttributeNS(null, 'r', 50);
-//   vol.setAttributeNS(null, 'fill', 'black');
-//   vol.setAttributeNS(null, 'stroke', 'none');
-
-//   document.getElementById('vol_svg').appendChild(vol);
-// }
-
-// createCircle();
 
 /**
  * Progress Bar
