@@ -18,55 +18,18 @@ wrVolume.addEventListener('mousedown', e => {
       return;
     }
 
-    /**/
-    /*
-    var progressValue = document.querySelector('#volume-value');
-
-    var RADIUS = 138;
-    var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
-
-    function progress(value) {
-      var progress = value / 100;
-      var dashoffset = CIRCUMFERENCE * (1 - progress);
-
-      console.log('progress:', value + '%', '|', 'offset:', dashoffset);
-
-      if (dashoffset >= volumeCirclelength) {
-        progressValue.style.strokeDashoffset = volumeCirclelength;
-      } else {
-        progressValue.style.strokeDashoffset = dashoffset;
-      }
-    }
-
-    control.addEventListener('input', function(event) {
-        progress(event.target.valueAsNumber);
-    });
-
-    progressValue.style.strokeDasharray = CIRCUMFERENCE;
-    let v = e.offsetX / 10 + e.offsetY / 10;
-    progress(v);
-*/
-    /**/
-
     volume.style.transform = `rotate(${Math.atan2(e.y - volY, e.x - volX)}rad)`;
 
-    // window.getComputedStyle(volume, '::before').getPropertyValue('conetnt');
     document.querySelector(
       '.volume-point'
     ).style.transform = `rotate(${-Math.atan2(e.y - volY, e.x - volX)}rad)`;
 
-    // document.styleSheets[0].addRule(
-    //   '.volume-in-circle::before',
-    //   'transform: rotate(' + -Math.atan2(e.y - volY, e.x - volX) + 'rad)'
-    // );
-
-    /**/
     const volumeValue = document.querySelector('#volume-value');
     const volumeValueRadius = volumeValue.getAttribute('r');
     const volumeValueLength = 2 * Math.PI * volumeValueRadius;
-    const strokeDashArr_1 = (volumeValueLength + deg * 5) / 2.2;
+    const strokeDashArr_1 = (volumeValueLength + deg * 5) / 2.22;
     const strokeDashArr_2 =
-      volumeValueLength - (volumeValueLength + deg * 5) / 2.2;
+      volumeValueLength - (volumeValueLength + deg * 5) / 2.22;
 
     if (
       strokeDashArr_1 > volumeValueLength ||
@@ -74,18 +37,11 @@ wrVolume.addEventListener('mousedown', e => {
     ) {
       return;
     }
-    // v.setAttribute(
-    //   'stroke-dasharray',
-    //   (vL + deg * 5) / 2.2 + ',' + (vL - (vL + deg * 5) / 2.2)
-    // );
+
     volumeValue.setAttribute(
       'stroke-dasharray',
       strokeDashArr_1 + ',' + strokeDashArr_2
     );
-    // console.log(v.getTotalLength());
-    // console.log(v.getAttribute('stroke-dasharray'));
-    // (-progress / 100f * 360f) - 90f
-    /**/
   };
 
   document.onmouseup = () => {
@@ -102,18 +58,17 @@ wrVolume.ondragstart = () => {
 /**
  * Ranges Controls
  */
-
 const rangeBass = document.querySelector('.range-bass');
 const rangeBassThumb = document.querySelector('.range-bass .range-thumb');
 
 rangeBassThumb.addEventListener('mousedown', e => {
+  e.preventDefault();
+
   let thumbCoords = getCoords(rangeBassThumb);
   let shiftY = e.pageY - thumbCoords.top;
   let sliderCoords = getCoords(rangeBass);
 
   document.onmousemove = function(e) {
-    e.preventDefault();
-
     let newTop = e.pageY - shiftY - sliderCoords.top;
     if (newTop < 0) newTop = 0;
 
@@ -144,13 +99,13 @@ const rangeHigh = document.querySelector('.range-high');
 const rangeHighThumb = document.querySelector('.range-high .range-thumb');
 
 rangeHighThumb.addEventListener('mousedown', e => {
+  e.preventDefault();
+
   let thumbCoords = getCoords(rangeHighThumb);
   let shiftY = e.pageY - thumbCoords.top;
   let sliderCoords = getCoords(rangeHigh);
 
   document.onmousemove = function(e) {
-    e.preventDefault();
-
     let newTop = e.pageY - shiftY - sliderCoords.top;
     if (newTop < 0) newTop = 0;
 
@@ -184,13 +139,13 @@ const progressBuffer = document.querySelector('.progress-buffer');
 let progressBufferWidth = 0;
 
 progressThumb.addEventListener('mousedown', e => {
+  e.preventDefault();
+
   let thumbCoords = getCoords(progressThumb);
   let shiftX = e.pageX - thumbCoords.left;
   let sliderCoords = getCoords(progressElem);
 
   document.onmousemove = function(e) {
-    e.preventDefault();
-
     let newLeft = e.pageX - shiftX - sliderCoords.left;
     if (newLeft < 0) newLeft = 0;
 

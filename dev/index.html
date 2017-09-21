@@ -55,18 +55,28 @@
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="302px" height="228px" class="svg_2">
                 <defs>
                   <filter id="volume-stroke">
-                    <feDropShadow dx="0" dy="0" stdDeviation="1" />
+                    <feOffset in="SourceAlpha" dx="0" dy="0" />
+                    <feGaussianBlur result="blurOut" stdDeviation="2" />
+                    <feFlood flood-color="rgb(0, 0, 0)" result="floodOut" />
+                    <feComposite operator="out" in="floodOut" in2="blurOut" result="compOut" />
+                    <feComposite operator="in" in="compOut" in2="SourceAlpha" />
+                    <feComponentTransfer>
+                      <feFuncA type="linear" slope="0.64" />
+                    </feComponentTransfer>
+                    <feBlend mode="multiply" in2="SourceGraphic" />
                   </filter>
                 </defs>
-                <g stroke-width="14" filter="url(#volume-stroke)" fill="transparent" transform="rotate(153 151 151)">
+                <g stroke-width="17" filter="url(#volume-stroke)" fill="transparent" transform="rotate(153 151 151)">
                   <circle id="volume-circle" cx="151" cy="151" r="138" stroke="rgb(208, 206, 204)" style="stroke-linecap: round; stroke-dasharray:563, 303; stroke-dashoffset:0"
                   />
                 </g>
               </svg>
 
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="302px" height="258px" class="svg_3">
-                <text x="20" y="248">MIN</text>
-                <text x="250" y="248">MAX</text>
+                <text x="20" y="249" style="fill:#fff;">MIN</text>
+                <text x="19" y="248" style="font-family: open_sanssemibold, Arial, Helvetica, sans-serif;">MIN</text>
+                <text x="247" y="249" style="fill:#fff;">MAX</text>
+                <text x="246" y="248" style="font-family: open_sanssemibold, Arial, Helvetica, sans-serif;">MAX</text>
               </svg>
 
             </div>
@@ -81,13 +91,15 @@
                 <span class="range-bg">
                   <span class="range-value range-bass-value"></span>
                 </span>
-                <span class="range-thumb"></span>
+                <div class="range-thumb">
+                  <span class="range-thumb-body"></span>
+                  <span class="thumb-shadow"></span>
+                </div>
               </div>
               <div class="range-marking-level-top"></div>
               <div class="range-marking-level-middle"></div>
               <div class="range-marking-level-bottom"></div>
               <span class="range-name">bass</span>
-              <input class="range-inp-b" type="range" min="-10" max="10" step="3.33" value="0" hidden>
             </div>
 
             <div class="controller">
@@ -95,13 +107,15 @@
                 <span class="range-bg">
                   <span class="range-value range-high-value"></span>
                 </span>
-                <span class="range-thumb"></span>
+                <div class="range-thumb">
+                  <span class="range-thumb-body"></span>
+                  <span class="thumb-shadow"></span>
+                </div>
               </div>
               <div class="range-marking-level-top"></div>
               <div class="range-marking-level-middle"></div>
               <div class="range-marking-level-bottom"></div>
               <span class="range-name">high</span>
-              <input class="range-inp" type="range" min="-10" max="10" step="3.33" value="0" hidden>
             </div>
 
           </div>
@@ -111,18 +125,20 @@
         <div class="eq-progress-section">
           <div class="eq-progress-body">
 
-            <progress class="eq-progress" max="100" value="10"></progress>
             <div class="progress-bg">
               <div class="progress-buffer"></div>
               <div class="progress-value"></div>
             </div>
             <div class="progress-thumb">
-              <span class="thumb-line"></span>
-              <span class="thumb-line"></span>
-              <span class="thumb-line"></span>
-              <div class="progress-tooltip">
-                <div class="tooltip-body">0</div>
+              <div class="progress-thumb-body">
+                <span class="thumb-line"></span>
+                <span class="thumb-line"></span>
+                <span class="thumb-line"></span>
+                <div class="progress-tooltip">
+                  <div class="tooltip-body">0</div>
+                </div>
               </div>
+              <span class="thumb-shadow"></span>
             </div>
 
           </div>
