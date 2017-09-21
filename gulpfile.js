@@ -7,6 +7,8 @@ const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const bs = require('browser-sync').create();
 const imagemin = require('gulp-imagemin');
+const ttf2woff = require('gulp-ttf2woff');
+const ttf2woff2 = require('gulp-ttf2woff2');
 
 gulp.task('serv', () => {
   bs.init({
@@ -79,11 +81,36 @@ gulp.task('imagemin', () => {
     .pipe(gulp.dest('./App/img'));
 });
 
+gulp.task('ttf2woff', () => {
+  gulp
+    .src(['./dev/fonts/*.ttf'])
+    .pipe(ttf2woff())
+    .pipe(gulp.dest('./App/fonts/'));
+});
+
+gulp.task('ttf2woff2', () => {
+  gulp
+    .src(['./dev/fonts/*.ttf'])
+    .pipe(ttf2woff2())
+    .pipe(gulp.dest('./App/fonts/'));
+});
+
 gulp.task('watch', () => {
   gulp.watch('./dev/*.html', ['html']);
   gulp.watch('./dev/css/**/*.css', ['css']);
   gulp.watch('./dev/js/**/*.js', ['js']);
   gulp.watch('./App/img/*', ['imagemin']);
+  gulp.watch('./App/fonts/*.ttf', ['ttf2woff']);
+  gulp.watch('./App/fonts/*.ttf', ['ttf2woff2']);
 });
 
-gulp.task('default', ['serv', 'html', 'css', 'js', 'imagemin', 'watch']);
+gulp.task('default', [
+  'serv',
+  'html',
+  'css',
+  'js',
+  'imagemin',
+  'ttf2woff',
+  'ttf2woff2',
+  'watch'
+]);
